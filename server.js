@@ -51,7 +51,69 @@ app.post('/login', async (req, res) => {
   res.json({ message: `Vítejte, ${username}!` });
 });
 
+app.post('/notes', (req, res) => {
+    const { username, title, text } = req.body;
+  
+    if (!username || !title || !text) {
+      return res.status(400).json({ message: 'Chybí údaje.' });
+    }
+  
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  
+    if (!user.notes) user.notes = [];
+  
+    const newNote = {
+      title,
+      text,
+      date: new Date().toISOString()
+    };
+  
+    user.notes.unshift(newNote); // Přidat poznámku na začátek (nejnovější první)
+    saveUsers(users);
+  
+    res.json({ message: 'Poznámka uložena.', note: newNote });
+});
+  
+app.get('/notes/:username', (req, res) => {
+    const users = loadUsers();
+    const user = users.find(u => u.username === req.params.username);
+    if (!user || !user.notes) return res.json([]);
+  
+    res.json(user.notes);
+});
+
+app.delete('/notes/:username/:timestamp', (req, res) => {
+    const { username, timestamp } = req.params;
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  
+    user.notes = user.notes?.filter(note => note.date !== timestamp) || [];
+    saveUsers(users);
+  
+    res.json({ message: 'Poznámka smazána.' });
+  });
+
+  app.put('/notes/important', (req, res) => {
+    const { username, timestamp, important } = req.body;
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  
+    const note = user.notes?.find(note => note.date === timestamp);
+    if (!note) return res.status(404).json({ message: 'Poznámka nenalezena.' });
+  
+    note.important = important;
+    saveUsers(users);
+  
+    res.json({ message: 'Poznámka aktualizována.' });
+  });
+  
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server běží na http://localhost:${PORT}`);
 });
+
