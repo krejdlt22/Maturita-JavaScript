@@ -26,6 +26,16 @@
 
   <p id="message"></p>
 
+  <div id="noteSection" style="display:none;">
+    <h2>Poznámky</h2>
+    <form id="noteForm">
+      <input type="text" id="noteTitle" placeholder="Nadpis" required><br>
+      <textarea id="noteText" placeholder="Text poznámky" required></textarea><br>
+      <button type="submit">Přidat poznámku</button>
+    </form>
+    <div id="notesContainer"></div>
+  </div>  
+
   <script src="script.js"></script>
 </body>
 </html>

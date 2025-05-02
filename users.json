@@ -1,1 +1,29 @@
-[] 
+[
+  {
+    "username": "a",
+    "password": "$2b$10$rf87zbKt24bcQszg4n6MqectrCNJZl1rH5q3oVZKcFF0V1IvSA1oa",
+    "notes": [
+      {
+        "title": "Karel",
+        "text": "Karel jablko ztratil",
+        "date": "2025-05-02T10:25:52.410Z"
+      },
+      {
+        "title": "Karel",
+        "text": "Karel má jablko",
+        "date": "2025-05-02T10:25:32.276Z"
+      }
+    ]
+  },
+  {
+    "username": "b",
+    "password": "$2b$10$Y96FQ/wm2s4yDtLP16fKl.PFQdS.9mnB1av/zhJHgZRWDCwCdSi/y",
+    "notes": [
+      {
+        "title": "Střecha",
+        "text": "Mám děravou střechu",
+        "date": "2025-05-02T10:26:43.247Z"
+      }
+    ]
+  }
+]
