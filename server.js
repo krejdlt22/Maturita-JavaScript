@@ -84,6 +84,34 @@ app.get('/notes/:username', (req, res) => {
     res.json(user.notes);
 });
 
+app.delete('/notes/:username/:timestamp', (req, res) => {
+    const { username, timestamp } = req.params;
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  
+    user.notes = user.notes?.filter(note => note.date !== timestamp) || [];
+    saveUsers(users);
+  
+    res.json({ message: 'Poznámka smazána.' });
+  });
+
+  app.put('/notes/important', (req, res) => {
+    const { username, timestamp, important } = req.body;
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+    if (!user) return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  
+    const note = user.notes?.find(note => note.date === timestamp);
+    if (!note) return res.status(404).json({ message: 'Poznámka nenalezena.' });
+  
+    note.important = important;
+    saveUsers(users);
+  
+    res.json({ message: 'Poznámka aktualizována.' });
+  });
+  
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server běží na http://localhost:${PORT}`);
