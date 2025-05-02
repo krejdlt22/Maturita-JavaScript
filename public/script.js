@@ -29,6 +29,7 @@
     document.getElementById('message').textContent = data.message;
   });
   
+  let showOnlyImportant = false;
 
 
   let currentUser = null;
@@ -82,7 +83,10 @@
     const container = document.getElementById('notesContainer');
     container.innerHTML = '';
   
-    notes.forEach(note => {
+    // Filtrování
+    const filtered = showOnlyImportant ? notes.filter(n => n.important) : notes;
+  
+    filtered.forEach(note => {
       const noteEl = document.createElement('div');
       noteEl.style.border = '1px solid #ccc';
       noteEl.style.padding = '10px';
@@ -123,5 +127,17 @@
       container.appendChild(noteEl);
     });
   }
+
+  document.getElementById('showAll').addEventListener('click', () => {
+    showOnlyImportant = false;
+    loadNotes();
+  });
+  
+  document.getElementById('showImportant').addEventListener('click', () => {
+    showOnlyImportant = true;
+    loadNotes();
+  });
+  
+  
   
   
