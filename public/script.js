@@ -84,13 +84,44 @@
   
     notes.forEach(note => {
       const noteEl = document.createElement('div');
+      noteEl.style.border = '1px solid #ccc';
+      noteEl.style.padding = '10px';
+      noteEl.style.margin = '10px 0';
+      if (note.important) noteEl.style.backgroundColor = '#fff7cc';
+  
       noteEl.innerHTML = `
         <h4>${note.title}</h4>
-        <small>${new Date(note.date).toLocaleString()}</small>
+        <small>${new Date(note.date).toLocaleString()}</small><br>
         <p>${note.text}</p>
-        <hr>
+        <label>
+          <input type="checkbox" ${note.important ? 'checked' : ''}>
+          Důležité
+        </label>
+        <button class="delete-btn">Smazat</button>
       `;
+  
+      const checkbox = noteEl.querySelector('input[type="checkbox"]');
+      checkbox.addEventListener('change', async () => {
+        await fetch('/notes/important', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: currentUser,
+            timestamp: note.date,
+            important: checkbox.checked
+          })
+        });
+        loadNotes();
+      });
+  
+      const deleteBtn = noteEl.querySelector('.delete-btn');
+      deleteBtn.addEventListener('click', async () => {
+        await fetch(`/notes/${currentUser}/${note.date}`, { method: 'DELETE' });
+        loadNotes();
+      });
+  
       container.appendChild(noteEl);
     });
   }
+  
   
