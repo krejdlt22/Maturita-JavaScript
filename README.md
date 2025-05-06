@@ -7,5 +7,7 @@
 4. V příkazovém řádku spustím aplikaci pomocí příkazu "node server.js".
 5. Otevřu prohlížeč a do vyhledávání napíšu url adresu http://localhost:3000.
 
+  Spuštění pomocí Render: https://maturita-javascript.onrender.com
+
 
 Do příkazového řádku se píší příkazi bez uvozovek.
