@@ -50,11 +50,38 @@
   
     if (res.ok) {
       currentUser = username;
+      document.getElementById('currentUserName').textContent = currentUser;
       document.getElementById('noteSection').style.display = 'block';
       loadNotes();
     }
   });
+
+  document.getElementById('deleteAccount').addEventListener('click', async () => {
+    const confirmUsername = prompt('Pro potvrzení smažte účet zadáním svého uživatelského jména:');
+    if (!confirmUsername || confirmUsername !== currentUser) {
+      alert('Jméno nesouhlasí. Účet nebyl smazán.');
+      return;
+    }
   
+    if (!confirm('Opravdu chcete smazat svůj účet včetně všech poznámek?')) return;
+  
+    const res = await fetch(`/delete-user/${currentUser}`, {
+      method: 'DELETE'
+    });
+  
+    const data = await res.json();
+    alert(data.message);
+  
+    if (res.ok) {
+      currentUser = null;
+      document.getElementById('noteSection').style.display = 'none';
+      document.getElementById('message').textContent = '';
+      document.getElementById('currentUserName').textContent = '';
+    }
+  });
+  
+  
+   
   document.getElementById('noteForm').addEventListener('submit', async e => {
     e.preventDefault();
   

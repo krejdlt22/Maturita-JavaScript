@@ -84,6 +84,20 @@ app.get('/notes/:username', (req, res) => {
     res.json(user.notes);
 });
 
+app.delete('/delete-user/:username', (req, res) => {
+  const username = req.params.username;
+  const users = loadUsers();
+  const filtered = users.filter(u => u.username !== username);
+
+  if (users.length === filtered.length) {
+    return res.status(404).json({ message: 'Uživatel nenalezen.' });
+  }
+
+  saveUsers(filtered);
+  res.json({ message: 'Uživatel a jeho poznámky byly smazány.' });
+});
+
+
 app.delete('/notes/:username/:timestamp', (req, res) => {
     const { username, timestamp } = req.params;
     const users = loadUsers();

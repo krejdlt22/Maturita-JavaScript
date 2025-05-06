@@ -12,7 +12,7 @@
     <input type="password" id="regPassword" placeholder="Heslo" required><br>
     <label>
       <input type="checkbox" id="agreeCheckbox">
-      Souhlasím, že AI může využívat moje data pro trénink
+      Souhlasím, že mnou vložená data mohou bát využita pro trénink AI.
     </label><br>
     <button type="submit">Registrovat</button>
   </form>
@@ -25,6 +25,12 @@
   </form>
 
   <p id="message"></p>
+
+  <div id="userInfo" style="margin-top: 10px;">
+    Přihlášen jako: <span id="currentUserName"></span>
+    <button id="deleteAccount" style="margin-left: 10px; color: red;">Zrušit účet</button>
+  </div>
+  
 
   <div id="noteSection" style="display:none;">
     <h2>Poznámky</h2>

@@ -4,14 +4,16 @@
     "password": "$2b$10$rf87zbKt24bcQszg4n6MqectrCNJZl1rH5q3oVZKcFF0V1IvSA1oa",
     "notes": [
       {
-        "title": "Karel",
-        "text": "Karel jablko ztratil",
-        "date": "2025-05-02T10:25:52.410Z"
+        "title": "Tak to jo",
+        "text": "Ahojda ja jsem Jirka",
+        "date": "2025-05-06T06:55:55.208Z",
+        "important": true
       },
       {
         "title": "Karel",
-        "text": "Karel má jablko",
-        "date": "2025-05-02T10:25:32.276Z"
+        "text": "Karel jablko ztratil",
+        "date": "2025-05-02T10:25:52.410Z",
+        "important": false
       }
     ]
   },
