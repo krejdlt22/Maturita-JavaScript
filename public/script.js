@@ -80,7 +80,19 @@
     }
   });
   
+  function showMessage(text, type = 'success') {
+    const message = document.getElementById('message');
+    message.textContent = text;
+    message.className = type === 'error' ? 'error' : 'success';
+    message.id = 'message'; // zachová ID
   
+    // Nepovinné: schovej zprávu po 3 vteřinách
+    setTimeout(() => {
+      message.textContent = '';
+      message.className = '';
+    }, 3000);
+  }
+
    
   document.getElementById('noteForm').addEventListener('submit', async e => {
     e.preventDefault();

@@ -1,8 +1,102 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
     padding: 20px;
-}
+  }
   
-form {
+  h2 {
+    margin-top: 30px;
+  }
+  
+  form {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
     margin-bottom: 20px;
-}  
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 80px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  #noteFilter button {
+    margin-right: 10px;
+    background-color: #7f8c8d;
+  }
+  
+  #noteFilter button:hover {
+    background-color: #636e72;
+  }
+  
+  #message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  #message.success {
+    background-color: #e6ffe6;
+    border: 1px solid #66cc66;
+    color: #2d862d;
+  }
+  
+  #message.error {
+    background-color: #ffe0e0;
+    border: 1px solid #ff9999;
+    color: #cc0000;
+  }
+  
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .note {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .note.important {
+    background-color: #fff7cc;
+    border-left: 5px solid #f1c40f;
+  }
+  
+  #userInfo {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
